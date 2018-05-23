@@ -21,8 +21,8 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    
     DefaultTableModel tabla = new DefaultTableModel();
+
     public MainFrame() {
         initComponents();
         jB_GuardarCambios.setVisible(false);
@@ -242,13 +242,13 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerActionPerformed
-        for (int i=0; i<tabla.getRowCount();i++){
+        for (int i = 0; i < tabla.getRowCount(); i++) {
             tabla.removeRow(i);
-            i-=1;
+            i -= 1;
         }
         ArrayList alumnos = Conexion.mostrarAlumnos();
         Iterator it = alumnos.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             Alumno alu = (Alumno) it.next();
             String[] fila = new String[5];
             fila[0] = String.valueOf(alu.getId());
@@ -262,35 +262,34 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBVerActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        Alumno alu = new Alumno(Integer.parseInt(jTF_ID.getText()),jTF_NOMBRE.getText(),jTF_APELLIDOS.getText(),
-                jTF_FECHA.getText(),Integer.parseInt(jTF_NOTA.getText()));
+        Alumno alu = new Alumno(Integer.parseInt(jTF_ID.getText()), jTF_NOMBRE.getText(), jTF_APELLIDOS.getText(),
+                jTF_FECHA.getText(), Integer.parseInt(jTF_NOTA.getText()));
         Conexion.añadirAlumno(alu);
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jB_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_BorrarActionPerformed
-        try{
+        try {
             int id = Integer.parseInt(String.valueOf(jTableAlumnos.getValueAt(jTableAlumnos.getSelectedRow(), jTableAlumnos.getSelectedColumn())));
             Conexion.borrarAlumno(id);
-        }catch(ArrayIndexOutOfBoundsException ex){
+        } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "No has selecionado un alumno");
-        }   
+        }
     }//GEN-LAST:event_jB_BorrarActionPerformed
 
     private void jB_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_BuscarActionPerformed
-        for (int i=0; i<tabla.getRowCount();i++){
+        for (int i = 0; i < tabla.getRowCount(); i++) {
             tabla.removeRow(i);
-            i-=1;
+            i -= 1;
         }
-        if (jTF_Busqueda.getText().equalsIgnoreCase("")){
+        if (jTF_Busqueda.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "No se ha introducido ninguna busqueda");
-        }else{
-            ArrayList alumnos = Conexion.busqueda(jTF_Busqueda.getText());
-            if (alumnos.isEmpty()){
+        } else {
+            ArrayList alumnos = Conexion.search(jTF_Busqueda.getText());
+            if (alumnos.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "No se han encontrado coincidencias");
-            }
-            else{
+            } else {
                 Iterator it = alumnos.iterator();
-                while(it.hasNext()){
+                while (it.hasNext()) {
                     Alumno alu = (Alumno) it.next();
                     String[] fila = new String[5];
                     fila[0] = String.valueOf(alu.getId());
@@ -306,7 +305,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_BuscarActionPerformed
 
     private void jB_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModificarActionPerformed
-        try{
+        try {
             jB_GuardarCambios.setVisible(true);
             int id = Integer.parseInt(String.valueOf(jTableAlumnos.getValueAt(jTableAlumnos.getSelectedRow(), jTableAlumnos.getSelectedColumn())));
             Alumno alu = Conexion.buscarAlumno(id);
@@ -316,15 +315,19 @@ public class MainFrame extends javax.swing.JFrame {
             jTF_APELLIDOS.setText(alu.getApellidos());
             jTF_FECHA.setText(alu.getFechaNaciemiento());
             jTF_NOTA.setText(String.valueOf(alu.getNota()));
-        }catch(ArrayIndexOutOfBoundsException ex){
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "No has selecionado un alumno");
-        }   
+            jB_GuardarCambios.setVisible(false);
+        }
     }//GEN-LAST:event_jB_ModificarActionPerformed
 
     private void jB_GuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_GuardarCambiosActionPerformed
-        Alumno nuevo = new Alumno(Integer.parseInt(jTF_ID.getText()),jTF_NOMBRE.getText(),jTF_APELLIDOS.getText(),
-            jTF_FECHA.getText(), Integer.parseInt(jTF_NOTA.getText()));
+        Alumno nuevo = new Alumno(Integer.parseInt(jTF_ID.getText()), jTF_NOMBRE.getText(), jTF_APELLIDOS.getText(),
+                jTF_FECHA.getText(), Integer.parseInt(jTF_NOTA.getText()));
         Conexion.modificarAlumno(nuevo);
+        jTF_ID.setEditable(true);
+        jB_GuardarCambios.setVisible(false);
     }//GEN-LAST:event_jB_GuardarCambiosActionPerformed
 
     /**

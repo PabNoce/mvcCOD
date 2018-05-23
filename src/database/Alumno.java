@@ -3,6 +3,7 @@ package database;
 import java.sql.Date;
 
 public class Alumno {
+
     private int id;
     private String nombre;
     private String apellidos;
@@ -62,7 +63,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "id: " + id + " -- nombre: " + nombre + " -- apellidos:" + apellidos + 
-                " --  fechaNaciemiento: " + fechaNaciemiento + " -- nota:" + nota;
+        return "id: " + id + " -- nombre: " + nombre + " -- apellidos:" + apellidos
+                + " --  fechaNaciemiento: " + fechaNaciemiento + " -- nota:" + nota;
     }
 }
