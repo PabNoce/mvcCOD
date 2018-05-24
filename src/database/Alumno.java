@@ -1,7 +1,5 @@
 package database;
 
-import java.sql.Date;
-
 public class Alumno {
 
     private int id;
