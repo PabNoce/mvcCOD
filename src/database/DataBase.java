@@ -8,5 +8,4 @@ public class DataBase {
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
     }
-
 }

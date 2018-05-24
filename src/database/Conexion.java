@@ -108,7 +108,7 @@ public class Conexion {
             st.setString(4, String.valueOf(alumno.getNota()));
             st.setString(5, String.valueOf(alumno.getId()));
             st.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
