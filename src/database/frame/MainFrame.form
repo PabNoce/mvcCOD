@@ -54,13 +54,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTF_NOTA" min="-2" pref="95" max="-2" attributes="0"/>
                                       <Component id="jTF_APELLIDOS" alignment="0" pref="168" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTF_ID" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTF_NOMBRE" alignment="0" pref="93" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jTF_NOMBRE" alignment="0" pref="168" max="32767" attributes="0"/>
                                       <Component id="jTF_FECHA" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTF_ID" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <Component id="jTF_NOTA" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -75,17 +73,14 @@
                           <Component id="jBVer" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="jB_Buscar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jTF_Busqueda" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -135,10 +130,15 @@
                               <Component id="jLabelFECHA" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTF_FECHA" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabelNOTA" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTF_NOTA" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jLabelNOTA" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="jTF_NOTA" min="-2" pref="19" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jBVer" min="-2" max="-2" attributes="0"/>
