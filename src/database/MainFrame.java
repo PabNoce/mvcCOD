@@ -5,9 +5,6 @@
  */
 package database;
 
-
-import database.Conexion;
-import database.Alumno;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
