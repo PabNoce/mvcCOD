@@ -7,12 +7,11 @@ import java.util.logging.Logger;
 
 public class Conexion {
 
-    static String nombreBD = "DataBase.bd";
     static Connection connect;
 
     public static void connect() {
         try {
-            connect = DriverManager.getConnection("jdbc:sqlite:" + nombreBD);
+            connect = DriverManager.getConnection("jdbc:sqlite:DataBase.bd");
             if (connect != null) {
             }
         } catch (SQLException ex) {
@@ -31,13 +30,13 @@ public class Conexion {
     public static ArrayList<Alumno> mostrarAlumnos() {
         ArrayList<Alumno> listaAlumnos = new ArrayList();
         connect();
-        ResultSet result = null;
+        ResultSet select = null;
         try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Alumnos");
-            result = st.executeQuery();
-            while (result.next()) {
-                Alumno alu = new Alumno(result.getInt("id"), result.getString("Nombre"),
-                        result.getString("Apellidos"), result.getString("FechaNacimiento"), result.getInt("Nota"));
+            PreparedStatement statement = connect.prepareStatement("SELECT * FROM Alumnos");
+            select = statement.executeQuery();
+            while (select.next()) {
+                Alumno alu = new Alumno(select.getInt("id"), select.getString("Nombre"),
+                        select.getString("Apellidos"), select.getString("FechaNacimiento"), select.getInt("Nota"));
                 listaAlumnos.add(alu);
             }
         } catch (SQLException ex) {
@@ -50,13 +49,13 @@ public class Conexion {
     public static void añadirAlumno(Alumno alumno) {
         connect();
         try {
-            PreparedStatement st = connect.prepareStatement("insert into Alumnos (id, Nombre, Apellidos, FechaNacimiento, Nota) values (?,?,?,?,?)");
-            st.setString(1, String.valueOf(alumno.getId()));
-            st.setString(2, alumno.getNombre());
-            st.setString(3, alumno.getApellidos());
-            st.setString(4, alumno.getFechaNaciemiento());
-            st.setString(5, String.valueOf(alumno.getNota()));
-            st.execute();
+            PreparedStatement statement = connect.prepareStatement("insert into Alumnos (id, Nombre, Apellidos, FechaNacimiento, Nota) values (?,?,?,?,?)");
+            statement.setString(1, String.valueOf(alumno.getId()));
+            statement.setString(2, alumno.getNombre());
+            statement.setString(3, alumno.getApellidos());
+            statement.setString(4, alumno.getFechaNaciemiento());
+            statement.setString(5, String.valueOf(alumno.getNota()));
+            statement.execute();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -66,9 +65,9 @@ public class Conexion {
     public static void borrarAlumno(int id) {
         connect();
         try {
-            PreparedStatement st = connect.prepareStatement("DELETE FROM Alumnos WHERE id=?");
-            st.setInt(1, id);
-            st.execute();
+            PreparedStatement statement = connect.prepareStatement("DELETE FROM Alumnos WHERE id=?");
+            statement.setInt(1, id);
+            statement.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -78,15 +77,15 @@ public class Conexion {
     public static ArrayList<Alumno> search(String busqueda) {
         ArrayList<Alumno> listaAlumnos = new ArrayList();
         connect();
-        ResultSet result = null;
+        ResultSet select = null;
         try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumnos where id like '" + busqueda
+            PreparedStatement statement = connect.prepareStatement("select * from Alumnos where id like '" + busqueda
                     + "' or Nombre like '" + busqueda + "' or Apellidos like '" + busqueda + "' or Nota like '" + busqueda + ""
                     + "' or FechaNacimiento like '" + busqueda + "'");
-            result = st.executeQuery();
-            while (result.next()) {
-                Alumno alu = new Alumno(result.getInt("id"), result.getString("Nombre"),
-                        result.getString("Apellidos"), result.getString("FechaNacimiento"), result.getInt("Nota"));
+            select = statement.executeQuery();
+            while (select.next()) {
+                Alumno alu = new Alumno(select.getInt("id"), select.getString("Nombre"),
+                        select.getString("Apellidos"), select.getString("FechaNacimiento"), select.getInt("Nota"));
                 listaAlumnos.add(alu);
             }
         } catch (SQLException ex) {
@@ -100,13 +99,13 @@ public class Conexion {
         close();
         connect();
         try {
-            PreparedStatement st = connect.prepareStatement("UPDATE Alumnos SET Nombre=? , Apellidos = ? , FechaNacimiento = ? , Nota = ?  where id=?");
-            st.setString(1, alumno.getNombre());
-            st.setString(2, alumno.getApellidos());
-            st.setString(3, alumno.getFechaNaciemiento());
-            st.setString(4, String.valueOf(alumno.getNota()));
-            st.setString(5, String.valueOf(alumno.getId()));
-            st.executeUpdate();
+            PreparedStatement statement = connect.prepareStatement("UPDATE Alumnos SET Nombre=? , Apellidos = ? , FechaNacimiento = ? , Nota = ?  where id=?");
+            statement.setString(1, alumno.getNombre());
+            statement.setString(2, alumno.getApellidos());
+            statement.setString(3, alumno.getFechaNaciemiento());
+            statement.setString(4, String.valueOf(alumno.getNota()));
+            statement.setString(5, String.valueOf(alumno.getId()));
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -118,8 +117,8 @@ public class Conexion {
         connect();
         ResultSet result = null;
         try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumnos where id like '" + id + "'");
-            result = st.executeQuery();
+            PreparedStatement statement = connect.prepareStatement("select * from Alumnos where id like '" + id + "'");
+            result = statement.executeQuery();
             if (result.next()) {
                 Alumno alu = new Alumno(result.getInt("id"), result.getString("Nombre"),
                         result.getString("Apellidos"), result.getString("FechaNacimiento"), result.getInt("Nota"));
