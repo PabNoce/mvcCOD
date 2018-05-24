@@ -14,10 +14,9 @@ public class Conexion {
         try {
             connect = DriverManager.getConnection("jdbc:sqlite:" + nombreBD);
             if (connect != null) {
-                System.out.println("Conectado");
             }
         } catch (SQLException ex) {
-            System.err.println("No se ha podido conectar\n" + ex.getMessage());
+            System.err.println("Error\n" + ex.getMessage());
         }
     }
 
