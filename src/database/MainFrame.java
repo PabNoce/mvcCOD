@@ -112,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabelFECHA.setText("FECHA DE NACIMIENTO:");
 
-        jLabelNOTA.setText("NOTA");
+        jLabelNOTA.setText("NOTA:");
 
         jB_Borrar.setText("Borrar Alumno");
         jB_Borrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
