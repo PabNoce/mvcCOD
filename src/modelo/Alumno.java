@@ -1,4 +1,4 @@
-package database;
+package modelo;
 
 public class Alumno {
 
