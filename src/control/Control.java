@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Alumno;
 
-public class Conexion {
+public class Control {
 
     static Connection connect;
 
@@ -24,7 +24,7 @@ public class Conexion {
         try {
             connect.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

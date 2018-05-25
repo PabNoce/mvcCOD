@@ -10,7 +10,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Alumno;
-import control.Conexion;
+import control.Control;
 
 /**
  *
@@ -260,7 +260,7 @@ public class Vista extends javax.swing.JFrame {
             tabla.removeRow(i);
             i -= 1;
         }
-        ArrayList alumnos = Conexion.mostrarAlumnos();
+        ArrayList alumnos = Control.mostrarAlumnos();
         Iterator it = alumnos.iterator();
         while (it.hasNext()) {
             Alumno alu = (Alumno) it.next();
@@ -278,13 +278,13 @@ public class Vista extends javax.swing.JFrame {
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
         Alumno alu = new Alumno(Integer.parseInt(jTF_ID.getText()), jTF_NOMBRE.getText(), jTF_APELLIDOS.getText(),
                 jTF_FECHA.getText(), Integer.parseInt(jTF_NOTA.getText()));
-        Conexion.añadirAlumno(alu);
+        Control.añadirAlumno(alu);
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jB_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_BorrarActionPerformed
         try {
             int id = Integer.parseInt(String.valueOf(jTableAlumnos.getValueAt(jTableAlumnos.getSelectedRow(), jTableAlumnos.getSelectedColumn())));
-            Conexion.borrarAlumno(id);
+            Control.borrarAlumno(id);
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(rootPane, "No has selecionado un alumno");
         }
@@ -298,7 +298,7 @@ public class Vista extends javax.swing.JFrame {
         if (jTF_Busqueda.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "No se ha introducido ninguna busqueda");
         } else {
-            ArrayList alumnos = Conexion.search(jTF_Busqueda.getText());
+            ArrayList alumnos = Control.search(jTF_Busqueda.getText());
             if (alumnos.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "No se han encontrado coincidencias");
             } else {
@@ -322,7 +322,7 @@ public class Vista extends javax.swing.JFrame {
         try {
             jB_GuardarCambios.setVisible(true);
             int id = Integer.parseInt(String.valueOf(jTableAlumnos.getValueAt(jTableAlumnos.getSelectedRow(), jTableAlumnos.getSelectedColumn())));
-            Alumno alu = Conexion.buscarAlumno(id);
+            Alumno alu = Control.buscarAlumno(id);
             jTF_ID.setText(String.valueOf(alu.getId()));
             jTF_ID.setEditable(false);
             jTF_NOMBRE.setText(alu.getNombre());
@@ -339,7 +339,7 @@ public class Vista extends javax.swing.JFrame {
     private void jB_GuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_GuardarCambiosActionPerformed
         Alumno nuevo = new Alumno(Integer.parseInt(jTF_ID.getText()), jTF_NOMBRE.getText(), jTF_APELLIDOS.getText(),
                 jTF_FECHA.getText(), Integer.parseInt(jTF_NOTA.getText()));
-        Conexion.modificarAlumno(nuevo);
+        Control.modificarAlumno(nuevo);
         jTF_ID.setEditable(true);
         jB_GuardarCambios.setVisible(false);
     }//GEN-LAST:event_jB_GuardarCambiosActionPerformed
